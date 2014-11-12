@@ -9,7 +9,7 @@ class PrimeService(rpyc.Service):
 
     def check_Prime(self, number):
         i=1
-        primes = ""
+        primes = None
         #any factors must be less than the square root
         #of the number, +1 for python not including upper limit
         upper=int((number ** 0.5))+1
@@ -24,7 +24,8 @@ class PrimeService(rpyc.Service):
         allPrimes = ""
         if number > 1:
             for j in range(2, number+1):
-               allPrimes += str(self.check_Prime(j)) #add each prime to str
+               if self.check_Prime(j) is not None:
+                   allPrimes = (allPrimes + ' ' + (str(self.check_Prime(j)))) #add each prime to str
         else:
             print("1 is not a prime number, and has no primes before it")
         return allPrimes #string containing all prime numbers
