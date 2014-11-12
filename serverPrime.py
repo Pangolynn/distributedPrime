@@ -30,7 +30,7 @@ class PrimeService(rpyc.Service):
             print("1 is not a prime number, and has no primes before it")
         return allPrimes #string containing all prime numbers
 
-#Necessary to connect to server
+#Necessary to start server
 from rpyc.utils.server import ThreadedServer
 t = ThreadedServer(PrimeService, port = 12345)
 t.start()
